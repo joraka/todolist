@@ -60,6 +60,7 @@ body {
 #form input:focus {
   background-color: #494d28;
   color: white;
+  text-shadow: 1px 1px 1px black;
 }
 
 #form input[type="text"] {
@@ -68,11 +69,17 @@ body {
   min-width: 300px;
 }
 
+#form input[type="text"]:focus::placeholder {
+  color: rgba(255, 255, 255, 0.783);
+  text-shadow: 1px 1px 1px black;
+}
+
 #form input[type="submit"] {
   background-color: #405f3b;
   color: white;
   cursor: pointer;
   border: none;
+  text-shadow: 1px 1px 1px black;
 }
 
 #form input[type="submit"]:active {
@@ -111,16 +118,24 @@ body {
   padding: 1px;
   display: flex;
   gap: 5px;
+  display: flex;
+  align-content: center;
 }
 
 .checkboxBtn {
   cursor: pointer;
 }
 
+.checkboxBtn {
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.54));
+}
+
 .removeBtn {
   cursor: pointer;
   border: none;
   background-color: transparent;
+  color: white;
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.54));
 }
 
 .removeBtn:hover {
@@ -137,4 +152,16 @@ body {
 
 .todoMessage.checked {
   text-decoration: line-through;
+}
+
+#footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 50px;
+  font-size: 0.8rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#itemCount, #completeditemCount {
+    font-weight: bold;
 }
