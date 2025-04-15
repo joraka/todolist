@@ -51,7 +51,7 @@ function addTodoItem(message, checked = false, skipSave = false) {
     messageEl: todoItemEl.querySelector(".todoMessage"),
     checkbox: todoItemEl.querySelector('input[type="checkbox"]'),
     removeBtn: todoItemEl.querySelector(".removeBtn"),
-    removeBtnEvent: () => onRemoveTodoClicked(itemId),
+    removeBtnEvent: () => removeTodoItem(itemId),
   };
 
   todoItemEl.$data = itemObj;
@@ -63,7 +63,7 @@ function addTodoItem(message, checked = false, skipSave = false) {
   if (!skipSave) saveToLocal();
 }
 
-function onRemoveTodoClicked(id) {
+function removeTodoItem(id) {
   const found = todoListArray.find((item) => item.id === id);
   if (!found) return console.error("item not found");
 
