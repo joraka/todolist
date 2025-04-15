@@ -1,0 +1,100 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin-top: 100px;
+}
+
+#main {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  max-width: 1000px;
+  padding: 2px;
+}
+
+#form {
+  gap: 1px;
+}
+
+#form input {
+  padding: 10px;
+  display: inline-block;
+  min-width: 100px;
+}
+
+#form input[type="text"] {
+  outline: none;
+  border: 1px solid black;
+  min-width: 300px;
+}
+
+#form input[type="text"]:focus {
+  border: 1px solid rgb(255, 0, 251);
+}
+
+#form input[type="submit"] {
+  background-color: red;
+  cursor: pointer;
+  border: none;
+}
+
+#form input[type="submit"]:hover {
+  background-color: rgb(255, 79, 79);
+  cursor: pointer;
+}
+
+#form {
+  width: 100%;
+  display: flex;
+}
+
+#todoList {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+#todoList li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border-bottom: 1px solid gray;
+}
+
+#todoList li:hover {
+  background-color: rgba(0, 0, 0, 0.131);
+}
+
+.todoButtons {
+  padding: 1px;
+  display: flex;
+  gap: 5px;
+}
+
+.checkboxBtn {
+  cursor: pointer;
+}
+
+.removeBtn {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.removeBtn:hover {
+  color: red;
+}
+
+.todoMessage.checked {
+  text-decoration: line-through;
+}
