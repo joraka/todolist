@@ -1,4 +1,4 @@
-document.getElementById("root").innerHTML = `
+document.getElementById("root").outerHTML = `
 <main id="main">
     <form id="form">
         <input type="text" palceholder="Add a message" class="msgInput" id="messageField">
@@ -21,7 +21,7 @@ let lastIdIndex = 0;
 let todoListArray = [];
 
 function onListItemNameClick(event) {
-  const itemObj = event.target.parentElement.parentElement.$data;
+  const itemObj = event.target.closest(".todoListItem").$data;
   itemObj.messageEl.classList.toggle("checked");
   itemObj.checked = !itemObj.checked;
   saveToLocal();
@@ -29,6 +29,7 @@ function onListItemNameClick(event) {
 
 function addTodoItem(message, checked = false, skipSave = false) {
   const todoItemEl = document.createElement("li");
+  todoItemEl.className = "todoListItem";
   const itemId = ++lastIdIndex;
   todoItemEl.dataset.itemId = itemId;
   todoItemEl.innerHTML = `
@@ -51,26 +52,23 @@ function addTodoItem(message, checked = false, skipSave = false) {
     messageEl: todoItemEl.querySelector(".todoMessage"),
     checkbox: todoItemEl.querySelector('input[type="checkbox"]'),
     removeBtn: todoItemEl.querySelector(".removeBtn"),
-    removeBtnEvent: () => removeTodoItem(itemId),
   };
 
   todoItemEl.$data = itemObj;
   todoListArray.push(itemObj);
 
   itemObj.checkbox.addEventListener("change", onListItemNameClick);
-  itemObj.removeBtn.addEventListener("click", itemObj.removeBtnEvent);
+  itemObj.removeBtn.addEventListener("click", onRemoveTodoClicked);
 
   if (!skipSave) saveToLocal();
 }
 
-function removeTodoItem(id) {
-  const found = todoListArray.find((item) => item.id === id);
-  if (!found) return console.error("item not found");
-
-  found.checkbox.removeEventListener("change", onListItemNameClick);
-  found.removeBtn.removeEventListener("click", found.removeBtnEvent);
-  found.el.remove();
-  todoListArray = todoListArray.filter((item) => item.id !== id);
+function onRemoveTodoClicked(event) {
+  const itemObj = event.target.closest(".todoListItem").$data;
+  itemObj.checkbox.removeEventListener("change", onListItemNameClick);
+  itemObj.removeBtn.removeEventListener("click", onRemoveTodoClicked);
+  itemObj.el.remove();
+  todoListArray = todoListArray.filter((item) => item.id !== itemObj.id);
 
   saveToLocal();
 }
@@ -82,8 +80,6 @@ formEl.addEventListener("submit", (event) => {
     addTodoItem(messageFieldEl.value);
     messageFieldEl.value = "";
   }
-
-  console.log(event);
 });
 
 function saveToLocal() {

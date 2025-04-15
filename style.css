@@ -4,30 +4,62 @@
   box-sizing: border-box;
 }
 
+body,
+input,
+button {
+  font-family: "National Park", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 body {
   background-color: gray;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  margin-top: 100px;
+  background: #2a7b9b;
+  background: linear-gradient(
+    30deg,
+    rgb(31, 81, 100) 0%,
+    rgb(54, 113, 78) 50%,
+    rgb(76, 72, 35) 100%
+  );
 }
 
 #main {
-  background-color: rgb(255, 255, 255);
+  margin-top: 100px;
+  background-color: rgba(255, 255, 255, 0.635);
   width: 100%;
-  max-width: 1000px;
-  padding: 2px;
+  max-width: 600px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.454);
+  overflow: hidden;
 }
 
 #form {
-  gap: 1px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: rgba(255, 255, 255, 0.43);
 }
 
 #form input {
-  padding: 10px;
+  padding: 5px 10px;
   display: inline-block;
   min-width: 100px;
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+#form input:focus {
+  background-color: #494d28;
+  color: white;
 }
 
 #form input[type="text"] {
@@ -36,30 +68,30 @@ body {
   min-width: 300px;
 }
 
-#form input[type="text"]:focus {
-  border: 1px solid rgb(255, 0, 251);
-}
-
 #form input[type="submit"] {
-  background-color: red;
+  background-color: #405f3b;
+  color: white;
   cursor: pointer;
   border: none;
 }
 
-#form input[type="submit"]:hover {
-  background-color: rgb(255, 79, 79);
-  cursor: pointer;
+#form input[type="submit"]:active {
+  background-color: #22341f;
 }
 
-#form {
-  width: 100%;
-  display: flex;
+#form input[type="submit"]:hover {
+  background-color: #494d28;
+  cursor: pointer;
 }
 
 #todoList {
   display: flex;
   flex-direction: column;
-  min-height: 300px;
+  min-height: 400px;
+  overflow-y: scroll;
+  max-height: 500px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.128) inset;
+  padding-top: 5px;
 }
 
 #todoList li {
@@ -93,6 +125,14 @@ body {
 
 .removeBtn:hover {
   color: red;
+}
+
+.todoMessage {
+  line-break: anywhere;
+  text-align: center;
+  width: 100%;
+  padding: 2px 5px;
+  padding-right: 10px;
 }
 
 .todoMessage.checked {
